@@ -1,15 +1,15 @@
 
 <!DOCTYPE html>
+
 <html lang="he">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>שאלון אינטראקטיבי - מושגי אינטרנט</title>
-    
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>שאלון אינטראקטיבי - סגנון סלקום</title>
 <style>
 body {
     font-family: Arial, sans-serif;
-    background-color: #f9f9f9;
+    background-color: #f0e6f6;
     margin: 0;
     padding: 0;
     direction: rtl;
@@ -70,7 +70,7 @@ label {
 .explanation {
     margin-top: 10px;
     font-size: 16px;
-    color: #333;
+    color: #4a148c;
     display: none;
 }
 
@@ -89,284 +89,177 @@ button:hover {
     background-color: #0056b3;
 }
 </style>
-
 </head>
 <body>
 <div class="container">
-    <h1>שאלון אינטראקטיבי<br>היכרות עם מושגי אינטרנט</h1>
-
-    <div class="question-block active" id="q1">
-        <div class="question"><strong>שאלה 1:</strong> מהי רשת האינטרנט?</div>
-        
-        <label><input type="radio" name="q1" value="א"> א. חיבור בין שני מחשבים בלבד להעברת קבצים</label>
-        
-        <label><input type="radio" name="q1" value="ב"> ב. רשת תקשורת נתונים עולמית שמחברת מחשבים רבים</label>
-        
-        <label><input type="radio" name="q1" value="ג"> ג. שירות טלוויזיה אינטרנטי מבוסס IP</label>
-        
-        <label><input type="radio" name="q1" value="ד"> ד. מערכת הפעלה לרשתות תקשורת</label>
-        
-        <div class="feedback" id="q1_feedback"></div>
-        <div class="explanation" id="q1_explanation">האינטרנט היא רשת עולמית של מחשבים שמחוברים ביניהם ומעבירים מידע – היא אינה רק חיבור נקודתי בין שני מחשבים.</div>
-        <button type="button" onclick="checkAnswer('q1', 'ב', 1)">שלח</button>
-        <button type="button" id="q1_nextBtn" style="display:none;" onclick="goToNext(1)">המשך</button>
-    </div>
-    
-
-    <div class="question-block " id="q2">
-        <div class="question"><strong>שאלה 2:</strong> מי מהבאים נחשב לספק תשתית אינטרנט בישראל?</div>
-        
-        <label><input type="radio" name="q2" value="א"> א. נטוויז'ן</label>
-        
-        <label><input type="radio" name="q2" value="ב"> ב. בזק</label>
-        
-        <label><input type="radio" name="q2" value="ג"> ג. סלקום TV</label>
-        
-        <label><input type="radio" name="q2" value="ד"> ד. וויקיפדיה</label>
-        
-        <div class="feedback" id="q2_feedback"></div>
-        <div class="explanation" id="q2_explanation">בזק היא חברה שפורסת תשתיות פיזיות (כבלים וקווי טלפון), ולכן נחשבת כספק תשתית ולא רק כספק שירות.</div>
-        <button type="button" onclick="checkAnswer('q2', 'ב', 2)">שלח</button>
-        <button type="button" id="q2_nextBtn" style="display:none;" onclick="goToNext(2)">המשך</button>
-    </div>
-    
-
-    <div class="question-block " id="q3">
-        <div class="question"><strong>שאלה 3:</strong> מה תפקידו של ISP?</div>
-        
-        <label><input type="radio" name="q3" value="א"> א. לספק שירותי טלוויזיה בלבד</label>
-        
-        <label><input type="radio" name="q3" value="ב"> ב. לספק חיבור לרשת האינטרנט העולמית</label>
-        
-        <label><input type="radio" name="q3" value="ג"> ג. להתקין כבלים בבית הלקוח</label>
-        
-        <label><input type="radio" name="q3" value="ד"> ד. לפרוס סיבים אופטיים מתחת לים</label>
-        
-        <div class="feedback" id="q3_feedback"></div>
-        <div class="explanation" id="q3_explanation">ISP הוא הגוף שמחבר אותנו בפועל לרשת האינטרנט – הוא לא פורש תשתיות אלא מספק את הגישה אליה.</div>
-        <button type="button" onclick="checkAnswer('q3', 'ב', 3)">שלח</button>
-        <button type="button" id="q3_nextBtn" style="display:none;" onclick="goToNext(3)">המשך</button>
-    </div>
-    
-
-    <div class="question-block " id="q4">
-        <div class="question"><strong>שאלה 4:</strong> איזו טכנולוגיה משתמשת בזק לחיבור האינטרנט?</div>
-        
-        <label><input type="radio" name="q4" value="א"> א. Ethernet Only</label>
-        
-        <label><input type="radio" name="q4" value="ב"> ב. HDMI</label>
-        
-        <label><input type="radio" name="q4" value="ג"> ג. Coaxial Cable</label>
-        
-        <label><input type="radio" name="q4" value="ד"> ד. DSL</label>
-        
-        <div class="feedback" id="q4_feedback"></div>
-        <div class="explanation" id="q4_explanation">בזק משתמשת בטכנולוגיית DSL שמעבירה נתונים על גבי קווי טלפון, בשונה מתשתיות כמו סיבים או כבלים.</div>
-        <button type="button" onclick="checkAnswer('q4', 'ד', 4)">שלח</button>
-        <button type="button" id="q4_nextBtn" style="display:none;" onclick="goToNext(4)">המשך</button>
-    </div>
-    
-
-    <div class="question-block " id="q5">
-        <div class="question"><strong>שאלה 5:</strong> מהו סיב אופטי?</div>
-        
-        <label><input type="radio" name="q5" value="א"> א. כבל חשמלי להעברת מתח גבוה</label>
-        
-        <label><input type="radio" name="q5" value="ב"> ב. חומר שקוף שמעביר נתונים באמצעות אור</label>
-        
-        <label><input type="radio" name="q5" value="ג"> ג. מתאם לחיבור רשת אלחוטית</label>
-        
-        <label><input type="radio" name="q5" value="ד"> ד. פרוטוקול להעברת קבצים</label>
-        
-        <div class="feedback" id="q5_feedback"></div>
-        <div class="explanation" id="q5_explanation">סיב אופטי הוא חוט דק מזכוכית שמעביר אור – וכך מעביר נתונים במהירות ובאמינות גבוהה.</div>
-        <button type="button" onclick="checkAnswer('q5', 'ב', 5)">שלח</button>
-        <button type="button" id="q5_nextBtn" style="display:none;" onclick="goToNext(5)">המשך</button>
-    </div>
-    
-
-    <div class="question-block " id="q6">
-        <div class="question"><strong>שאלה 6:</strong> מה ההבדל בין סיב Singlemode ל-Multimode?</div>
-        
-        <label><input type="radio" name="q6" value="א"> א. Multimode נפוץ לשימוש בין מדינות</label>
-        
-        <label><input type="radio" name="q6" value="ב"> ב. Singlemode משדר אור במסלול אחד ומגיע למרחקים ארוכים</label>
-        
-        <label><input type="radio" name="q6" value="ג"> ג. Singlemode זול וקל לייצור</label>
-        
-        <label><input type="radio" name="q6" value="ד"> ד. Multimode מהיר יותר מ-Singlemode</label>
-        
-        <div class="feedback" id="q6_feedback"></div>
-        <div class="explanation" id="q6_explanation">סיב Singlemode מעביר את האור במסלול אחד ומיועד למרחקים ארוכים, בשונה מ-Multimode שבו קיימים מסלולים מרובים ומוגבלים בטווח.</div>
-        <button type="button" onclick="checkAnswer('q6', 'ב', 6)">שלח</button>
-        <button type="button" id="q6_nextBtn" style="display:none;" onclick="goToNext(6)">המשך</button>
-    </div>
-    
-
-    <div class="question-block " id="q7">
-        <div class="question"><strong>שאלה 7:</strong> מהי כתובת IP?</div>
-        
-        <label><input type="radio" name="q7" value="א"> א. מספר מזהה ייחודי למחשב ברשת</label>
-        
-        <label><input type="radio" name="q7" value="ב"> ב. כרטיס זיכרון להעברת קבצים</label>
-        
-        <label><input type="radio" name="q7" value="ג"> ג. שם משתמש לחשבון אינטרנט</label>
-        
-        <label><input type="radio" name="q7" value="ד"> ד. כתובת אתר אינטרנט בשפה אנגלית</label>
-        
-        <div class="feedback" id="q7_feedback"></div>
-        <div class="explanation" id="q7_explanation">כתובת IP מזהה מחשב או רכיב ברשת – ממש כמו כתובת דואר של בית.</div>
-        <button type="button" onclick="checkAnswer('q7', 'א', 7)">שלח</button>
-        <button type="button" id="q7_nextBtn" style="display:none;" onclick="goToNext(7)">המשך</button>
-    </div>
-    
-
-    <div class="question-block " id="q8">
-        <div class="question"><strong>שאלה 8:</strong> כיצד מחשב יודע לתרגם כתובת אתר לכתובת IP?</div>
-        
-        <label><input type="radio" name="q8" value="א"> א. באמצעות שרת HTTP</label>
-        
-        <label><input type="radio" name="q8" value="ב"> ב. באמצעות שרת DNS</label>
-        
-        <label><input type="radio" name="q8" value="ג"> ג. באמצעות דפדפן האינטרנט</label>
-        
-        <label><input type="radio" name="q8" value="ד"> ד. באמצעות כתובת MAC</label>
-        
-        <div class="feedback" id="q8_feedback"></div>
-        <div class="explanation" id="q8_explanation">DNS הוא שירות שמתרגם כתובות אינטרנט (כמו google.com) לכתובות IP שמחשבים יודעים להבין.</div>
-        <button type="button" onclick="checkAnswer('q8', 'ב', 8)">שלח</button>
-        <button type="button" id="q8_nextBtn" style="display:none;" onclick="goToNext(8)">המשך</button>
-    </div>
-    
-
-    <div class="question-block " id="q9">
-        <div class="question"><strong>שאלה 9:</strong> מה תפקידו של כרטיס רשת?</div>
-        
-        <label><input type="radio" name="q9" value="א"> א. לזהות את כתובת האתר המבוקשת</label>
-        
-        <label><input type="radio" name="q9" value="ב"> ב. לאפשר למחשב להתחבר לרשת</label>
-        
-        <label><input type="radio" name="q9" value="ג"> ג. לאחסן קבצי מולטימדיה</label>
-        
-        <label><input type="radio" name="q9" value="ד"> ד. להפעיל תוכנות באופן עצמאי</label>
-        
-        <div class="feedback" id="q9_feedback"></div>
-        <div class="explanation" id="q9_explanation">כרטיס רשת הוא רכיב פיזי שמאפשר חיבור של המחשב לרשת – קווית או אלחוטית.</div>
-        <button type="button" onclick="checkAnswer('q9', 'ב', 9)">שלח</button>
-        <button type="button" id="q9_nextBtn" style="display:none;" onclick="goToNext(9)">המשך</button>
-    </div>
-    
-
-    <div class="question-block " id="q10">
-        <div class="question"><strong>שאלה 10:</strong> מהי פקודת PING?</div>
-        
-        <label><input type="radio" name="q10" value="א"> א. פקודה להורדת קבצים גדולים</label>
-        
-        <label><input type="radio" name="q10" value="ב"> ב. פקודה שבודקת אם מכשיר אחר מגיב ומה זמן התגובה</label>
-        
-        <label><input type="radio" name="q10" value="ג"> ג. פקודה להצגת מידע על דפדפן</label>
-        
-        <label><input type="radio" name="q10" value="ד"> ד. פקודה להצפנת קבצים ברשת</label>
-        
-        <div class="feedback" id="q10_feedback"></div>
-        <div class="explanation" id="q10_explanation">פקודת PING בודקת אם יש תקשורת בין שני מחשבים ומה זמן התגובה – שימושי לבדיקת תקינות החיבור.</div>
-        <button type="button" onclick="checkAnswer('q10', 'ב', 10)">שלח</button>
-        <button type="button" id="q10_nextBtn" style="display:none;" onclick="goToNext(10)">המשך</button>
-    </div>
-    
-
-    <div class="question-block " id="q11">
-        <div class="question"><strong>שאלה 11:</strong> מה ההבדל בין ביט (bit) לבייט (byte)?</div>
-        
-        <label><input type="radio" name="q11" value="א"> א. 1 בייט שווה ל-8 ביטים</label>
-        
-        <label><input type="radio" name="q11" value="ב"> ב. שניהם מייצגים אותו דבר</label>
-        
-        <label><input type="radio" name="q11" value="ג"> ג. 1 ביט שווה ל-8 בייטים</label>
-        
-        <label><input type="radio" name="q11" value="ד"> ד. ביט מודד זמן ובייט מודד נפח</label>
-        
-        <div class="feedback" id="q11_feedback"></div>
-        <div class="explanation" id="q11_explanation">1 בייט שווה ל-8 ביטים. ביט הוא יחידת מידע קטנה יותר, המשמשת למדידת מהירות. בייט משמש למדידת נפח קבצים.</div>
-        <button type="button" onclick="checkAnswer('q11', 'א', 11)">שלח</button>
-        <button type="button" id="q11_nextBtn" style="display:none;" onclick="goToNext(11)">המשך</button>
-    </div>
-    
-
-    <div class="question-block " id="q12">
-        <div class="question"><strong>שאלה 12:</strong> מהו כבל HDMI?</div>
-        
-        <label><input type="radio" name="q12" value="א"> א. כבל להעברת נתונים באמצעות סיבים אופטיים</label>
-        
-        <label><input type="radio" name="q12" value="ב"> ב. כבל להעברת וידאו ואודיו באיכות גבוהה</label>
-        
-        <label><input type="radio" name="q12" value="ג"> ג. כבל לטעינת מכשירים סלולריים</label>
-        
-        <label><input type="radio" name="q12" value="ד"> ד. כבל לקליטת אותות רדיו</label>
-        
-        <div class="feedback" id="q12_feedback"></div>
-        <div class="explanation" id="q12_explanation">HDMI הוא כבל שמעביר גם וידאו וגם אודיו באיכות גבוהה – מקשר בין מחשבים, טלוויזיות ומסכים.</div>
-        <button type="button" onclick="checkAnswer('q12', 'ב', 12)">שלח</button>
-        <button type="button" id="q12_nextBtn" style="display:none;" onclick="goToNext(12)">המשך</button>
-    </div>
-    
-
-    <div class="question-block " id="q13">
-        <div class="question"><strong>שאלה 13:</strong> מהו נתב (Router)?</div>
-        
-        <label><input type="radio" name="q13" value="א"> א. מכשיר להפעלת מסך מחשב</label>
-        
-        <label><input type="radio" name="q13" value="ב"> ב. כרטיס זיכרון במחשב</label>
-        
-        <label><input type="radio" name="q13" value="ג"> ג. כבל להעברת מידע</label>
-        
-        <label><input type="radio" name="q13" value="ד"> ד. רכיב שמנתב נתונים בין רשתות שונות</label>
-        
-        <div class="feedback" id="q13_feedback"></div>
-        <div class="explanation" id="q13_explanation">נתב (Router) מנתב מידע בין רשתות שונות – לדוגמה, מהרשת הביתית לאינטרנט.</div>
-        <button type="button" onclick="checkAnswer('q13', 'ד', 13)">שלח</button>
-        <button type="button" id="q13_nextBtn" style="display:none;" onclick="goToNext(13)">המשך</button>
-    </div>
-    
-
-    <div class="question-block " id="q14">
-        <div class="question"><strong>שאלה 14:</strong> מה תפקידו של מודם?</div>
-        
-        <label><input type="radio" name="q14" value="א"> א. לספק חשמל לרשת</label>
-        
-        <label><input type="radio" name="q14" value="ב"> ב. לאחסן כתובות DNS</label>
-        
-        <label><input type="radio" name="q14" value="ג"> ג. להמיר אותות אנלוגיים לדיגיטליים ולהיפך</label>
-        
-        <label><input type="radio" name="q14" value="ד"> ד. להקרין תמונות ממחשב לטלוויזיה</label>
-        
-        <div class="feedback" id="q14_feedback"></div>
-        <div class="explanation" id="q14_explanation">מודם ממיר אותות אנלוגיים (מהכבלים) לדיגיטליים (למחשב) – ולהפך, כדי שנוכל לגלוש.</div>
-        <button type="button" onclick="checkAnswer('q14', 'ג', 14)">שלח</button>
-        <button type="button" id="q14_nextBtn" style="display:none;" onclick="goToNext(14)">המשך</button>
-    </div>
-    
-
-    <div class="question-block " id="q15">
-        <div class="question"><strong>שאלה 15:</strong> מהי נקודת גישה (Hotspot)?</div>
-        
-        <label><input type="radio" name="q15" value="א"> א. מקום שמאפשר חיבור אלחוטי לאינטרנט</label>
-        
-        <label><input type="radio" name="q15" value="ב"> ב. אתר אינטרנט פתוח לכל הגולשים</label>
-        
-        <label><input type="radio" name="q15" value="ג"> ג. מכשיר לחיבור רמקולים ניידים</label>
-        
-        <label><input type="radio" name="q15" value="ד"> ד. שם של שרת DNS ציבורי</label>
-        
-        <div class="feedback" id="q15_feedback"></div>
-        <div class="explanation" id="q15_explanation">נקודת גישה (Hotspot) היא אזור שמאפשר התחברות לרשת האינטרנט באופן אלחוטי, למשל דרך Wi-Fi ציבורי.</div>
-        <button type="button" onclick="checkAnswer('q15', 'א', 15)">שלח</button>
-        <button type="button" id="q15_nextBtn" style="display:none;" onclick="goToNext(15)">המשך</button>
-    </div>
-    
-</form>
+<h1>שאלון אינטראקטיבי<br/>היכרות עם מושגי אינטרנט</h1>
+<div class="question-block active" id="q1">
+<div class="question"><strong>שאלה 1:</strong> מהי רשת האינטרנט?</div>
+<label><input name="q1" type="radio" value="א"/> א. חיבור בין שני מחשבים בלבד להעברת קבצים</label>
+<label><input name="q1" type="radio" value="ב"/> ב. רשת תקשורת נתונים עולמית שמחברת מחשבים רבים</label>
+<label><input name="q1" type="radio" value="ג"/> ג. שירות טלוויזיה אינטרנטי מבוסס IP</label>
+<label><input name="q1" type="radio" value="ד"/> ד. מערכת הפעלה לרשתות תקשורת</label>
+<div class="feedback" id="q1_feedback"></div>
+<div class="explanation" id="q1_explanation">האינטרנט היא רשת עולמית של מחשבים שמחוברים ביניהם ומעבירים מידע – היא אינה רק חיבור נקודתי בין שני מחשבים.</div>
+<button onclick="checkAnswer('q1', 'ב', 1)" type="button">שלח</button>
+<button id="q1_nextBtn" onclick="goToNext(1)" style="display:none;" type="button">המשך</button>
+</div>
+<div class="question-block" id="q2">
+<div class="question"><strong>שאלה 2:</strong> מי מהבאים נחשב לספק תשתית אינטרנט בישראל?</div>
+<label><input name="q2" type="radio" value="א"/> א. נטוויז'ן</label>
+<label><input name="q2" type="radio" value="ב"/> ב. בזק</label>
+<label><input name="q2" type="radio" value="ג"/> ג. סלקום TV</label>
+<label><input name="q2" type="radio" value="ד"/> ד. וויקיפדיה</label>
+<div class="feedback" id="q2_feedback"></div>
+<div class="explanation" id="q2_explanation">בזק היא חברה שפורסת תשתיות פיזיות (כבלים וקווי טלפון), ולכן נחשבת כספק תשתית ולא רק כספק שירות.</div>
+<button onclick="checkAnswer('q2', 'ב', 2)" type="button">שלח</button>
+<button id="q2_nextBtn" onclick="goToNext(2)" style="display:none;" type="button">המשך</button>
+</div>
+<div class="question-block" id="q3">
+<div class="question"><strong>שאלה 3:</strong> מה תפקידו של ISP?</div>
+<label><input name="q3" type="radio" value="א"/> א. לספק שירותי טלוויזיה בלבד</label>
+<label><input name="q3" type="radio" value="ב"/> ב. לספק חיבור לרשת האינטרנט העולמית</label>
+<label><input name="q3" type="radio" value="ג"/> ג. להתקין כבלים בבית הלקוח</label>
+<label><input name="q3" type="radio" value="ד"/> ד. לפרוס סיבים אופטיים מתחת לים</label>
+<div class="feedback" id="q3_feedback"></div>
+<div class="explanation" id="q3_explanation">ISP הוא הגוף שמחבר אותנו בפועל לרשת האינטרנט – הוא לא פורש תשתיות אלא מספק את הגישה אליה.</div>
+<button onclick="checkAnswer('q3', 'ב', 3)" type="button">שלח</button>
+<button id="q3_nextBtn" onclick="goToNext(3)" style="display:none;" type="button">המשך</button>
+</div>
+<div class="question-block" id="q4">
+<div class="question"><strong>שאלה 4:</strong> איזו טכנולוגיה משתמשת בזק לחיבור האינטרנט?</div>
+<label><input name="q4" type="radio" value="א"/> א. Ethernet Only</label>
+<label><input name="q4" type="radio" value="ב"/> ב. HDMI</label>
+<label><input name="q4" type="radio" value="ג"/> ג. Coaxial Cable</label>
+<label><input name="q4" type="radio" value="ד"/> ד. DSL</label>
+<div class="feedback" id="q4_feedback"></div>
+<div class="explanation" id="q4_explanation">בזק משתמשת בטכנולוגיית DSL שמעבירה נתונים על גבי קווי טלפון, בשונה מתשתיות כמו סיבים או כבלים.</div>
+<button onclick="checkAnswer('q4', 'ד', 4)" type="button">שלח</button>
+<button id="q4_nextBtn" onclick="goToNext(4)" style="display:none;" type="button">המשך</button>
+</div>
+<div class="question-block" id="q5">
+<div class="question"><strong>שאלה 5:</strong> מהו סיב אופטי?</div>
+<label><input name="q5" type="radio" value="א"/> א. כבל חשמלי להעברת מתח גבוה</label>
+<label><input name="q5" type="radio" value="ב"/> ב. חומר שקוף שמעביר נתונים באמצעות אור</label>
+<label><input name="q5" type="radio" value="ג"/> ג. מתאם לחיבור רשת אלחוטית</label>
+<label><input name="q5" type="radio" value="ד"/> ד. פרוטוקול להעברת קבצים</label>
+<div class="feedback" id="q5_feedback"></div>
+<div class="explanation" id="q5_explanation">סיב אופטי הוא חוט דק מזכוכית שמעביר אור – וכך מעביר נתונים במהירות ובאמינות גבוהה.</div>
+<button onclick="checkAnswer('q5', 'ב', 5)" type="button">שלח</button>
+<button id="q5_nextBtn" onclick="goToNext(5)" style="display:none;" type="button">המשך</button>
+</div>
+<div class="question-block" id="q6">
+<div class="question"><strong>שאלה 6:</strong> מה ההבדל בין סיב Singlemode ל-Multimode?</div>
+<label><input name="q6" type="radio" value="א"/> א. Multimode נפוץ לשימוש בין מדינות</label>
+<label><input name="q6" type="radio" value="ב"/> ב. Singlemode משדר אור במסלול אחד ומגיע למרחקים ארוכים</label>
+<label><input name="q6" type="radio" value="ג"/> ג. Singlemode זול וקל לייצור</label>
+<label><input name="q6" type="radio" value="ד"/> ד. Multimode מהיר יותר מ-Singlemode</label>
+<div class="feedback" id="q6_feedback"></div>
+<div class="explanation" id="q6_explanation">סיב Singlemode מעביר את האור במסלול אחד ומיועד למרחקים ארוכים, בשונה מ-Multimode שבו קיימים מסלולים מרובים ומוגבלים בטווח.</div>
+<button onclick="checkAnswer('q6', 'ב', 6)" type="button">שלח</button>
+<button id="q6_nextBtn" onclick="goToNext(6)" style="display:none;" type="button">המשך</button>
+</div>
+<div class="question-block" id="q7">
+<div class="question"><strong>שאלה 7:</strong> מהי כתובת IP?</div>
+<label><input name="q7" type="radio" value="א"/> א. מספר מזהה ייחודי למחשב ברשת</label>
+<label><input name="q7" type="radio" value="ב"/> ב. כרטיס זיכרון להעברת קבצים</label>
+<label><input name="q7" type="radio" value="ג"/> ג. שם משתמש לחשבון אינטרנט</label>
+<label><input name="q7" type="radio" value="ד"/> ד. כתובת אתר אינטרנט בשפה אנגלית</label>
+<div class="feedback" id="q7_feedback"></div>
+<div class="explanation" id="q7_explanation">כתובת IP מזהה מחשב או רכיב ברשת – ממש כמו כתובת דואר של בית.</div>
+<button onclick="checkAnswer('q7', 'א', 7)" type="button">שלח</button>
+<button id="q7_nextBtn" onclick="goToNext(7)" style="display:none;" type="button">המשך</button>
+</div>
+<div class="question-block" id="q8">
+<div class="question"><strong>שאלה 8:</strong> כיצד מחשב יודע לתרגם כתובת אתר לכתובת IP?</div>
+<label><input name="q8" type="radio" value="א"/> א. באמצעות שרת HTTP</label>
+<label><input name="q8" type="radio" value="ב"/> ב. באמצעות שרת DNS</label>
+<label><input name="q8" type="radio" value="ג"/> ג. באמצעות דפדפן האינטרנט</label>
+<label><input name="q8" type="radio" value="ד"/> ד. באמצעות כתובת MAC</label>
+<div class="feedback" id="q8_feedback"></div>
+<div class="explanation" id="q8_explanation">DNS הוא שירות שמתרגם כתובות אינטרנט (כמו google.com) לכתובות IP שמחשבים יודעים להבין.</div>
+<button onclick="checkAnswer('q8', 'ב', 8)" type="button">שלח</button>
+<button id="q8_nextBtn" onclick="goToNext(8)" style="display:none;" type="button">המשך</button>
+</div>
+<div class="question-block" id="q9">
+<div class="question"><strong>שאלה 9:</strong> מה תפקידו של כרטיס רשת?</div>
+<label><input name="q9" type="radio" value="א"/> א. לזהות את כתובת האתר המבוקשת</label>
+<label><input name="q9" type="radio" value="ב"/> ב. לאפשר למחשב להתחבר לרשת</label>
+<label><input name="q9" type="radio" value="ג"/> ג. לאחסן קבצי מולטימדיה</label>
+<label><input name="q9" type="radio" value="ד"/> ד. להפעיל תוכנות באופן עצמאי</label>
+<div class="feedback" id="q9_feedback"></div>
+<div class="explanation" id="q9_explanation">כרטיס רשת הוא רכיב פיזי שמאפשר חיבור של המחשב לרשת – קווית או אלחוטית.</div>
+<button onclick="checkAnswer('q9', 'ב', 9)" type="button">שלח</button>
+<button id="q9_nextBtn" onclick="goToNext(9)" style="display:none;" type="button">המשך</button>
+</div>
+<div class="question-block" id="q10">
+<div class="question"><strong>שאלה 10:</strong> מהי פקודת PING?</div>
+<label><input name="q10" type="radio" value="א"/> א. פקודה להורדת קבצים גדולים</label>
+<label><input name="q10" type="radio" value="ב"/> ב. פקודה שבודקת אם מכשיר אחר מגיב ומה זמן התגובה</label>
+<label><input name="q10" type="radio" value="ג"/> ג. פקודה להצגת מידע על דפדפן</label>
+<label><input name="q10" type="radio" value="ד"/> ד. פקודה להצפנת קבצים ברשת</label>
+<div class="feedback" id="q10_feedback"></div>
+<div class="explanation" id="q10_explanation">פקודת PING בודקת אם יש תקשורת בין שני מחשבים ומה זמן התגובה – שימושי לבדיקת תקינות החיבור.</div>
+<button onclick="checkAnswer('q10', 'ב', 10)" type="button">שלח</button>
+<button id="q10_nextBtn" onclick="goToNext(10)" style="display:none;" type="button">המשך</button>
+</div>
+<div class="question-block" id="q11">
+<div class="question"><strong>שאלה 11:</strong> מה ההבדל בין ביט (bit) לבייט (byte)?</div>
+<label><input name="q11" type="radio" value="א"/> א. 1 בייט שווה ל-8 ביטים</label>
+<label><input name="q11" type="radio" value="ב"/> ב. שניהם מייצגים אותו דבר</label>
+<label><input name="q11" type="radio" value="ג"/> ג. 1 ביט שווה ל-8 בייטים</label>
+<label><input name="q11" type="radio" value="ד"/> ד. ביט מודד זמן ובייט מודד נפח</label>
+<div class="feedback" id="q11_feedback"></div>
+<div class="explanation" id="q11_explanation">1 בייט שווה ל-8 ביטים. ביט הוא יחידת מידע קטנה יותר, המשמשת למדידת מהירות. בייט משמש למדידת נפח קבצים.</div>
+<button onclick="checkAnswer('q11', 'א', 11)" type="button">שלח</button>
+<button id="q11_nextBtn" onclick="goToNext(11)" style="display:none;" type="button">המשך</button>
+</div>
+<div class="question-block" id="q12">
+<div class="question"><strong>שאלה 12:</strong> מהו כבל HDMI?</div>
+<label><input name="q12" type="radio" value="א"/> א. כבל להעברת נתונים באמצעות סיבים אופטיים</label>
+<label><input name="q12" type="radio" value="ב"/> ב. כבל להעברת וידאו ואודיו באיכות גבוהה</label>
+<label><input name="q12" type="radio" value="ג"/> ג. כבל לטעינת מכשירים סלולריים</label>
+<label><input name="q12" type="radio" value="ד"/> ד. כבל לקליטת אותות רדיו</label>
+<div class="feedback" id="q12_feedback"></div>
+<div class="explanation" id="q12_explanation">HDMI הוא כבל שמעביר גם וידאו וגם אודיו באיכות גבוהה – מקשר בין מחשבים, טלוויזיות ומסכים.</div>
+<button onclick="checkAnswer('q12', 'ב', 12)" type="button">שלח</button>
+<button id="q12_nextBtn" onclick="goToNext(12)" style="display:none;" type="button">המשך</button>
+</div>
+<div class="question-block" id="q13">
+<div class="question"><strong>שאלה 13:</strong> מהו נתב (Router)?</div>
+<label><input name="q13" type="radio" value="א"/> א. מכשיר להפעלת מסך מחשב</label>
+<label><input name="q13" type="radio" value="ב"/> ב. כרטיס זיכרון במחשב</label>
+<label><input name="q13" type="radio" value="ג"/> ג. כבל להעברת מידע</label>
+<label><input name="q13" type="radio" value="ד"/> ד. רכיב שמנתב נתונים בין רשתות שונות</label>
+<div class="feedback" id="q13_feedback"></div>
+<div class="explanation" id="q13_explanation">נתב (Router) מנתב מידע בין רשתות שונות – לדוגמה, מהרשת הביתית לאינטרנט.</div>
+<button onclick="checkAnswer('q13', 'ד', 13)" type="button">שלח</button>
+<button id="q13_nextBtn" onclick="goToNext(13)" style="display:none;" type="button">המשך</button>
+</div>
+<div class="question-block" id="q14">
+<div class="question"><strong>שאלה 14:</strong> מה תפקידו של מודם?</div>
+<label><input name="q14" type="radio" value="א"/> א. לספק חשמל לרשת</label>
+<label><input name="q14" type="radio" value="ב"/> ב. לאחסן כתובות DNS</label>
+<label><input name="q14" type="radio" value="ג"/> ג. להמיר אותות אנלוגיים לדיגיטליים ולהיפך</label>
+<label><input name="q14" type="radio" value="ד"/> ד. להקרין תמונות ממחשב לטלוויזיה</label>
+<div class="feedback" id="q14_feedback"></div>
+<div class="explanation" id="q14_explanation">מודם ממיר אותות אנלוגיים (מהכבלים) לדיגיטליים (למחשב) – ולהפך, כדי שנוכל לגלוש.</div>
+<button onclick="checkAnswer('q14', 'ג', 14)" type="button">שלח</button>
+<button id="q14_nextBtn" onclick="goToNext(14)" style="display:none;" type="button">המשך</button>
+</div>
+<div class="question-block" id="q15">
+<div class="question"><strong>שאלה 15:</strong> מהי נקודת גישה (Hotspot)?</div>
+<label><input name="q15" type="radio" value="א"/> א. מקום שמאפשר חיבור אלחוטי לאינטרנט</label>
+<label><input name="q15" type="radio" value="ב"/> ב. אתר אינטרנט פתוח לכל הגולשים</label>
+<label><input name="q15" type="radio" value="ג"/> ג. מכשיר לחיבור רמקולים ניידים</label>
+<label><input name="q15" type="radio" value="ד"/> ד. שם של שרת DNS ציבורי</label>
+<div class="feedback" id="q15_feedback"></div>
+<div class="explanation" id="q15_explanation">נקודת גישה (Hotspot) היא אזור שמאפשר התחברות לרשת האינטרנט באופן אלחוטי, למשל דרך Wi-Fi ציבורי.</div>
+<button onclick="checkAnswer('q15', 'א', 15)" type="button">שלח</button>
+<button id="q15_nextBtn" onclick="goToNext(15)" style="display:none;" type="button">המשך</button>
 </div>
 
+</div>
 <script>
 let attempts = {};
 
