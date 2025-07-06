@@ -1,66 +1,82 @@
 <!DOCTYPE html>
 <html lang="he" dir="rtl">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>שאלון טכנאי סיבים - סגנון סלקום</title>
+  <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Quiz סיבים אופטיים - נווה, בהצלחה!</title>
   <style>
-    body { font-family: Arial, sans-serif; background-color: #f3e5f5; color: #4a148c; text-align: center; margin:0; padding:0; }
-    .quiz-container { max-width:600px; margin:40px auto; background:white; padding:20px; border-radius:12px; box-shadow:0 0 10px rgba(74,20,140,0.3); }
-    .question-title { font-size:20px; margin-bottom:15px; }
-    .option { display:block; background:#e1bee7; padding:10px; margin:10px 0; border-radius:8px; cursor:pointer; }
-    .option:hover { background:#ce93d8; }
-    #feedback { margin-top:20px; font-size:16px; }
-    #next-btn { margin-top:20px; padding:10px 20px; background:#6a1b9a; color:white; border:none; border-radius:8px; display:none; cursor:pointer; }
+    body {font-family: Arial, sans-serif; background: #f3e5f5; margin:0; padding:0;}
+    .container {max-width:600px; margin:40px auto; background:#fff; padding:20px; border-radius:12px; box-shadow:0 0 10px rgba(74,20,140,0.3);}
+    h1 {color:#6a1b9a; text-align:center;}
+    .question {font-size:18px; margin-bottom:15px;}
+    .option {display:block; background:#e1bee7; padding:10px; margin:8px 0; border-radius:8px; cursor:pointer;}
+    .option:hover {background:#ce93d8;}
+    .feedback {margin-top:15px; padding:10px; border-radius:8px; display:none; font-size:16px;}
+    .correct {background:#d4edda; color:#155724;}
+    .incorrect {background:#f8d7da; color:#721c24;}
+    #nextBtn {margin-top:20px; padding:12px; width:100%; background:#6a1b9a; color:#fff; border:none; border-radius:8px; cursor:pointer; display:none;}
   </style>
-</head>
-<body>
-  <div class="quiz-container">
-    <div id="question-number"></div>
-    <div class="question-title" id="question-text"></div>
-    <div id="options"></div>
-    <div id="feedback"></div>
-    <button id="next-btn" onclick="nextQuestion()">המשך</button>
+</head><body>
+  <div class="container">
+    <h1>נווה, בהצלחה במבחן!</h1>
+    <div id="quiz">
+      <div id="question-number" class="question"></div>
+      <div id="question-text" class="question"></div>
+      <div id="options"></div>
+      <div id="feedback" class="feedback"></div>
+      <button id="nextBtn" onclick="nextQuestion()">המשך</button>
+    </div>
   </div>
 <script>
-  const questions = [{"question": "מהו אובדן חיבור (Insertion Loss)?", "options": ["השגת אורך סיב מרבי", "כמות איבוד האור בזמן חיבור בין סיבים", "כמות רעש חשמלי בכבל נחושת", "מהירות גלישה במודם"], "answer": 1, "explanation": "Insertion Loss הוא איבוד האור בהכנסה לחיבור בין קצות הסיבים, נמדד בדציבל."}, {"question": "מהו חיבור SC?", "options": ["מחבר push-pull מרובע לסיב אופטי", "מחבר screw thread לסיב נחושת", "כבל רשת מסוג Cat6", "מתאם USB למודם"], "answer": 0, "explanation": "SC הוא מחבר push-pull מרובע נפוץ לסיבים אופטיים בפריסה ובמפסקות."}, {"question": "מה תפקיד מד האור (Power Meter) בסיבים?", "options": ["להזרים אור בסיב לבדיקה", "למדידת עוצמת האור הנכנס לסיב", "להמתח כבל לפני פריסה", "לחתוך את הסיבים במדויק"], "answer": 1, "explanation": "מד האור מודד את עוצמת האור הנכנס לסיב כדי לחשב אובדן וקיבולת תקשורת."}, {"question": "מהי דעיכת אות (Attenuation)?", "options": ["גידול חוזק האור לאורך הסיב", "הפחתת עוצמת האור בכל יחידת מרחק", "הגברת מהירות העברת נתונים", "שינוי מצב המודולציה"], "answer": 1, "explanation": "Attenuation מתייחס להפחתת עוצמת האות לאורך הסיב, נמדד בדציבל לקילומטר."}, {"question": "מהו Numeric Aperture?", "options": ["מידת יכולת קליטת אור בזווית", "חוזק הידוק המחבר", "אורך מוחלט של כבל", "אובדן ממוצע"], "answer": 0, "explanation": "Numeric Aperture מוגדר כיכולת הסיב לקלוט אור בזוויות שונות ביחס לציר."}, {"question": "באיזו תדירות אור אופטי משתמשים בסיבים singlemode בתקשורת מרוחקת?", "options": ["850 ננומטר", "1310 ננומטר", "650 ננומטר", "532 ננומטר"], "answer": 1, "explanation": "בתקשורת הסיבים singlemode משתמשים בעיקר ב-1310 ננומטר, ובחלק מקרים גם 1550 ננומטר."}, {"question": "מהי בדיקת Endface Inspection?", "options": ["בדיקת איכות פיצול הסיב", "בדיקה ויזואלית של קצה המחבר לאיתור לכלוכים", "בדיקה של חוזק הקרן", "מדידת אורך הסיב"], "answer": 1, "explanation": "בדיקה זו מאפשרת להבטיח שהמשטח נקי וללא פגמים לפני חיבור."}, {"question": "מהו סיב אופטי singlemode?", "options": ["סיב שמעביר קרן אור במצב אחד בלבד למרחקים ארוכים", "סיב המעביר מספר מסלולי אור בפולסים", "כבל נחושת לשידור אותות", "כבל קואקסיאלי להעברת וידאו"], "answer": 0, "explanation": "סיב singlemode מעביר אור במסלול אחד (מודה אחת) ומיועד לטווחים ארוכים בשל יכולת נמוכה של פיזור."}, {"question": "מהו Splitter אופטי?", "options": ["מכשיר למדידת אורך הסיב", "מתאם למודם DSL", "פיצול אור ליציאת מספר סיבים", "כבל מאריך למערכות CATV"], "answer": 2, "explanation": "Splitter אופטי מחלק את קרן האור ליוצאים מרובים ברשת FTTH."}, {"question": "מהו LC?", "options": ["מחבר סיבים אופטיים זעיר (Lucent Connector)", "כבל HDMI", "מחבר קואקסיאלי", "מתאם SATA"], "answer": 0, "explanation": "LC הוא מחבר זעיר לסיבים אופטיים, קטן מ-SC, נפוץ במכשירים מודרניים."}, {"question": "איזו סגלאת גוון מסמלת סיב multimode מסוג OM3?", "options": ["צהוב", "תכלת", "כתום", "סגול"], "answer": 1, "explanation": "סיבי OM3 מוגדרים בצבע תכלת לפי תקנים לתעבורה מהירה בעוצמות אור נמוכות."}, {"question": "מהי רדיוס כיפוף מינימלי (Minimum Bend Radius)?", "options": ["הקוטר המקסימלי של הכבל", "הזווית של מחבר SC", "המינימום רדיוס לכיפוף ללא שבירה", "אורך הסיב לפני שבירה"], "answer": 2, "explanation": "Minimum Bend Radius הוא הרדיוס הקטן שבו ניתן לכופף סיב מבלי לגרום לשבירה או אובדן גבוה."}, {"question": "למה חשוב לנקות מחברי סיבים לפני חיבור?", "options": ["כדי לשמור על טיפול אקולוגי", "כדי להוריד אובדן משמעותי", "כדי לשפר את מראה הכבל", "אין חשיבות, זה רק מיתוס"], "answer": 1, "explanation": "לכלוך על המחברים גורם לשיבושים ואובדן אור, לכן יש לנקות באמצעות מטלית מתאימה."}, {"question": "מהו OTDR?", "options": ["מכשיר למדידת אורך סיב וכניסת אובדן", "מחבר לסיב אופטי", "גלאי לזיהוי חורים בכבל נחושת", "מתאם לחיבור מודם"], "answer": 0, "explanation": "OTDR (Optical Time-Domain Reflectometer) מודד אורך הסיב, אובדן וכשלים לאורך קטע הסיב."}];
-  let currentQuestion = 0, attempts = 0;
+  const questions = [{"question": "מהי רשת האינטרנט?", "options": ["רשת חברתית", "רשת תקשורת נתונים עולמית", "מנוע חיפוש", "פרוטוקול אבטחה"], "answer": 1, "explanation": "האינטרנט היא רשת תקשורת נתונים כלל־עולמית המחברת מחשבים רבים."}, {"question": "מהו ISP?", "options": ["Internet System Protocol", "Integrated Service Plan", "Internet Service Provider", "Internal Server Program"], "answer": 2, "explanation": "ISP (Internet Service Provider) הוא ספק שירותי אינטרנט המחבר משתמשים לרשת."}, {"question": "איזו חברה מספקת תשתית DSL בישראל?", "options": ["HOTNET", "Unlimited", "בזק", "פרטנר"], "answer": 2, "explanation": "בזק מספקת תשתית DSL על קווי טלפון."}, {"question": "מהי טכנולוגיית ADSL?", "options": ["העברת נתונים על סיבים אופטיים", "העברת נתונים בצורה סימטרית", "העברת נתונים על תשתית טלפון באופן אסימטרי", "חיבור RF"], "answer": 2, "explanation": "ADSL משתמשת בתשתית טלפון להעברת נתונים בצורה אסימטרית."}, {"question": "מהו קצב ההורדה המרבי בבזק ADSL כפי שנכתב בחוברת?", "options": ["200 מגה", "18 מגה", "7 מגה", "900 קילו"], "answer": 1, "explanation": "החוברת מציינת קצב הורדה מקסימלי של 18 מגה ב־ADSL."}, {"question": "מהו קצב ההעלאה המרבי בבזק ADSL לפי החוברת?", "options": ["200 מגה", "18 מגה", "7 מגה", "900 קילו"], "answer": 3, "explanation": "העלאה מקסימלית מוגדרת בכ־900 קילו ביט לשנייה ב־ADSL."}, {"question": "מהו קצב ההורדה המרבי בטכנולוגיית VDSL על פי החוברת?", "options": ["18 מגה", "200 מגה", "7 מגה", "900 קילו"], "answer": 1, "explanation": "VDSL מאפשר העברת נתונים במהירות הורדה של עד 200 מגה."}, {"question": "מהו קצב ההעלאה המרבי בטכנולוגיית VDSL בחוברת?", "options": ["18 מגה", "200 מגה", "7 מגה", "900 קילו"], "answer": 2, "explanation": "VDSL מאפשר העלאה של עד כ־7 מגה לשנייה."}, {"question": "מהו סיב אופטי singlemode לפי החוברת?", "options": ["יוצר מספר מסלולי אור", "מעביר אור במסלול אחד בלבד", "מחבר RF", "כבל נחושת"], "answer": 1, "explanation": "Singlemode מעביר אור במוד אחד (שביל אחד) למרחקים ארוכים."}, {"question": "מהו סיב אופטי multimode לפי החוברת?", "options": ["מעביר אור במוד אחד", "מעביר אור במוד רב", "כבל קואקסיאלי", "חיבור RJ45"], "answer": 1, "explanation": "Multimode משדר אור במסלולים מרובים, מתאים למרחקים קצרים."}, {"question": "אילו אורכי גל מופיעים בחוברת כתחום תקשורת עיקרי בסיבים?", "options": ["850, 1310, 1550 ננומטר", "650, 900, 1200 ננומטר", "700, 1000, 1400 ננומטר", "600, 1250, 1600 ננומטר"], "answer": 0, "explanation": "החוברת מזכירה אורכי גל של 850, 1310 ו־1550 ננומטר."}, {"question": "אורך גל אופטי נפוץ בסיבים multimode?", "options": ["850 ננומטר", "1310 ננומטר", "1550 ננומטר", "1625 ננומטר"], "answer": 0, "explanation": "בחוברת מצוין שסיבי multimode פועלים בעיקר ב־850 ננומטר."}, {"question": "אורך גל אופטי נפוץ בסיבים singlemode?", "options": ["850 ננומטר", "1310 ננומטר", "1550 ננומטר", "1625 ננומטר"], "answer": 1, "explanation": "בחוברת מצוין שסיבי singlemode פועלים בעיקר ב־1310 ננומטר."}, {"question": "מהו פרוטוקול DNS לפי החוברת?", "options": ["Domain Name System", "Digital Network Service", "Dynamic Name Server", "Data Network Standard"], "answer": 0, "explanation": "DNS הוא פרוטוקול למיפוי שמות דומיין לכתובות IP."}, {"question": "מה תפקיד פקודת IPCONFIG לפי החוברת?", "options": ["להציג הגדרות TCP/IP", "למדוד Latency", "לבדוק DNS", "לשלוח מייל"], "answer": 0, "explanation": "ipconfig מציגה כתובת IP, מסיכה ושער ברירת מחדל."}, {"question": "מה תפקיד פקודת PING לפי החוברת?", "options": ["בדיקת מהירות הורדה", "בדיקת תגובת יעד ברשת", "בדיקת כתובת DNS", "הגדרת IP"], "answer": 1, "explanation": "ping בודק זמן תגובה (latency) בין מחשבים ברשת."}, {"question": "מהו כתובת MAC לפי החוברת?", "options": ["כתובת חומרה ייחודית", "כתובת IP של רשת", "כתובת דוא\"ל", "כתובת דומיין"], "answer": 0, "explanation": "כתובת MAC היא מזהה חומרה ייחודי לכרטיס רשת."}, {"question": "מהו LAN לפי החוברת?", "options": ["רשת מקומית מוגבלת", "רשת עירונית", "רשת גלובלית", "רשת VPN"], "answer": 0, "explanation": "LAN היא רשת תקשורת בתוך בניין או אזור מוגבל."}, {"question": "מהו WAN לפי החוברת?", "options": ["רשת תקשורת רחבת היקף", "רשת משרדית", "רשת חברתית", "פרוטוקול IP"], "answer": 0, "explanation": "WAN היא רשת תקשורת על פני מרחקים גדולים."}, {"question": "מה אומר המושג Hotspot לפי החוברת?", "options": ["נקודת גישה אלחוטית ציבורית", "כבל חם", "IP סטטי", "פרוטוקול VPN"], "answer": 0, "explanation": "Hotspot היא נקודת גישה ציבורית לאינטרנט אלחוטי."}, {"question": "מהו כבל קואקסיאלי לפי החוברת?", "options": ["כבל חשמלי חלול ומבודד", "כבל סיבים", "כבל רשת CAT5e", "כבל HDMI"], "answer": 0, "explanation": "כבל קואקסיאלי מכיל מוליך וחיצוניות מבודדת."}, {"question": "מהו מחבר RF לפי החוברת?", "options": ["מחבר לתדר רדיו בכבלים", "מחבר סיבים", "מחבר USB", "מחבר RJ45"], "answer": 0, "explanation": "RF הוא מחבר לשידור אותות בתדר רדיו."}, {"question": "מהו מחבר RJ45 לפי החוברת?", "options": ["מחבר לכבל רשת Twisted Pair", "מחבר קואקסיאלי", "מחבר סיבים", "מחבר HDMI"], "answer": 0, "explanation": "RJ45 הוא המחבר לכבלי רשת מסוג Twisted Pair."}, {"question": "כמה סיביות יש בבייט אחד לפי החוברת?", "options": ["8", "4", "16", "2"], "answer": 0, "explanation": "1 בייט = 8 סיביות."}, {"question": "מהו PPPOE לפי החוברת?", "options": ["פרוטוקול התחברות ב-DSL", "פרוטוקול DNS", "פרוטוקול FTP", "פרוטוקול SMTP"], "answer": 0, "explanation": "PPPoE הוא פרוטוקול לחיבור PPP מעל Ethernet בתשתית DSL."}, {"question": "מהו VDSL לפי החוברת?", "options": ["שידור נתונים על סיבים", "שידור נתונים על קווי טלפון במהירות גבוהה", "כבל קואקסיאלי", "פרוטוקול TCP"], "answer": 1, "explanation": "VDSL הוא טכנולוגיית DSL מהירה יותר מ-ADSL."}, {"question": "מהו NGN לפי החוברת?", "options": ["רשת דור חדש מרובת פרוטוקולים", "מחבר סיבים", "פרוטוקול אבטחה", "כבל חדש"], "answer": 0, "explanation": "NGN היא רשת דור חדש התומכת בפרוטוקולים שונים."}, {"question": "מהי מהירות מקסימלית ברשת סיבים לפי החוברת?", "options": ["1000 מגה", "100 מגה", "10 מגה", "10000 מגה"], "answer": 0, "explanation": "החוברת מציינת שהמהירות בסיבים יכולה להגיע עד 1000 מגה."}];
+  let current=0, tries=0;
+  const total = questions.length;
+  const qNum = document.getElementById('question-number');
+  const qText = document.getElementById('question-text');
+  const optsDiv = document.getElementById('options');
+  const fb = document.getElementById('feedback');
+  const nextBtn = document.getElementById('nextBtn');
+
   function showQuestion() {
-    const q = questions[currentQuestion];
-    document.getElementById("question-number").innerText = "שאלה " + (currentQuestion+1) + " מתוך " + questions.length;
-    document.getElementById("question-text").innerText = q.question;
-    const optsDiv = document.getElementById("options"); optsDiv.innerHTML="";
-    document.getElementById("feedback").innerText="";
-    document.getElementById("next-btn").style.display="none";
-    q.options.forEach((opt,i) => {
-      const btn = document.createElement("div"); btn.className="option";
-      btn.innerText = opt;
-      btn.onclick = () => checkAnswer(i);
+    const q = questions[current];
+    qNum.textContent = `שאלה ${current+1} מתוך ${total}`;
+    qText.textContent = q.question;
+    optsDiv.innerHTML = '';
+    fb.style.display='none';
+    nextBtn.style.display='none';
+    tries=0;
+    q.options.forEach((opt,i)=> {
+      const btn = document.createElement('div');
+      btn.className='option';
+      btn.textContent=opt;
+      btn.onclick=()=>checkAnswer(i);
       optsDiv.appendChild(btn);
     });
   }
+
   function checkAnswer(i) {
-    const q = questions[currentQuestion];
-    const fb = document.getElementById("feedback");
-    if (i === q.answer) {
-      fb.style.color="green"; fb.innerText="✔ תשובה נכונה!";
-      document.getElementById("next-btn").style.display="inline-block";
+    const q = questions[current];
+    fb.style.display='block';
+    if(i===q.answer) {
+      fb.className='feedback correct';
+      fb.textContent=`✔ תשובה נכונה! ${q.explanation} כל הכבוד נווה!`;
+      nextBtn.style.display='block';
     } else {
-      attempts++;
-      fb.style.color="red";
-      if (attempts<2) fb.innerText="❌ לא נכון, נסה שוב.";
+      tries++;
+      fb.className='feedback incorrect';
+      if(tries<2) fb.textContent='❌ לא נכון, נסה שוב נווה!';
       else {
-        fb.innerText = "✖ התשובה הנכונה היא: " + q.options[q.answer] + ". " + q.explanation;
-        document.getElementById("next-btn").style.display="inline-block";
+        fb.textContent=`✖ התשובה הנכונה היא: "${q.options[q.answer]}". ${q.explanation} בהצלחה לך נווה!`;
+        nextBtn.style.display='block';
       }
     }
   }
+
   function nextQuestion() {
-    currentQuestion++; attempts=0;
-    if (currentQuestion < questions.length) showQuestion();
-    else document.querySelector(".quiz-container").innerHTML = "<h2>🎉 סיימת את השאלון!</h2>";
+    current++;
+    if(current<total) showQuestion();
+    else document.querySelector('.container').innerHTML='<h1>סיימת את המבחן! בהצלחה נווה!</h1>';
   }
-  window.onload = showQuestion;
+
+  window.onload=showQuestion;
 </script>
-</body>
-</html>
+</body></html>
