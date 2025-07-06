@@ -1,83 +1,118 @@
+
 <!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <title>שאלון אינטרנט - סלקום סטייל</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {{
+            font-family: Arial, sans-serif;
+            background-color: #f3e5f5;
+            color: #4a148c;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+        }}
+        .quiz-container {{
+            max-width: 600px;
+            margin: 0 auto;
+            background: white;
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 0 10px rgba(74, 20, 140, 0.3);
+            margin-top: 40px;
+        }}
+        .question-title {{
+            font-size: 20px;
+            margin-bottom: 15px;
+        }}
+        .option {{
+            display: block;
+            background-color: #e1bee7;
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 8px;
+            cursor: pointer;
+        }}
+        .option:hover {{
+            background-color: #ce93d8;
+        }}
+        #explanation {{
+            margin-top: 20px;
+            font-size: 16px;
+            color: #00695c;
+        }}
+        #next-btn {{
+            margin-top: 30px;
+            padding: 10px 20px;
+            background-color: #6a1b9a;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            display: none;
+        }}
+    </style>
+</head>
+<body>
+    <div class="quiz-container">
+        <div id="question-number"></div>
+        <div class="question-title" id="question-text"></div>
+        <div id="options"></div>
+        <div id="explanation"></div>
+        <button id="next-btn" onclick="nextQuestion()">המשך</button>
+    </div>
 
-<html><head><meta charset="utf-8"/><title>שאלון אינטראקטיבי | סלקום סטייל</title><style>
-body {
-    font-family: Arial, sans-serif;
-    background-color: #f3e5f5;
-    color: #4a148c;
-    text-align: center;
-    direction: rtl;
-}
-.question-container {
-    display: none;
-    padding: 20px;
-    background-color: #ffffff;
-    margin: 20px auto;
-    border-radius: 12px;
-    box-shadow: 0 0 12px rgba(0,0,0,0.1);
-    width: 90%;
-    max-width: 600px;
-}
-button {
-    margin-top: 12px;
-    padding: 10px 18px;
-    font-size: 16px;
-    background-color: #ab47bc;
-    color: white;
-    border: none;
-    border-radius: 8px;
-    cursor: pointer;
-}
-button:hover {
-    background-color: #9c27b0;
-}
-</style></head><body><script>
-let currentQuestion = 0;
-let attempts = 0;
-const totalQuestions = document.querySelectorAll('.question-container').length;
+    <script>
+        const questions = [{"question": "מהו מנוע חיפוש?", "answers": ["תוכנה למציאת מידע באינטרנט", "רשת חברתית", "אתר חדשות", "מערכת הפעלה"], "correct": 0}, {"question": "מהי גלישה בטוחה?", "answers": ["הזנת סיסמה פשוטה", "שימוש באינטרנט אלחוטי פתוח", "גלישה באתרים מאובטחים", "פתיחת כל קובץ שמגיע במייל"], "correct": 2}, {"question": "מה תפקיד הדפדפן?", "answers": ["לכתוב מסמכים", "לשלוח דואר", "להציג דפי אינטרנט", "לערוך תמונות"], "correct": 2}, {"question": "מהי רשת האינטרנט?", "answers": ["אוסף של שרתים", "אוסף של רשתות מחשבים", "מחשב מרכזי", "תוכנת דואר"], "correct": 1}, {"question": "מהו אתר אינטרנט סטטי?", "answers": ["אתר שמתעדכן כל הזמן", "אתר עם תכנים קבועים", "אתר שאינו מקוון", "אתר אישי בלבד"], "correct": 1}, {"question": "מה זה WWW?", "answers": ["World Wide Web", "Web Wireless Work", "Wide Work Web", "World Web Work"], "correct": 0}, {"question": "מהו URL?", "answers": ["שם משתמש", "כתובת אתר", "תמונה באינטרנט", "פרסומת מקוונת"], "correct": 1}, {"question": "מהי רשת חברתית?", "answers": ["מנוע חיפוש", "שירות אחסון", "פלטפורמה לתקשורת בין אנשים", "פורום מקצועי"], "correct": 2}, {"question": "מה המשמעות של הסיומת .org?", "answers": ["ארגון מסחרי", "ממשלתי", "ארגון ללא כוונת רווח", "חברת אחסון"], "correct": 2}, {"question": "מהי סיסמה חזקה?", "answers": ["123456", "שם פרטי ותאריך לידה", "מכילה אותיות, מספרים וסימנים", "שם חיית מחמד"], "correct": 2}, {"question": "מהו עוגן (Anchor) בדף אינטרנט?", "answers": ["חיבור לאינטרנט", "קישור פנימי בתוך עמוד", "כפתור ניווט", "דפדפן"], "correct": 1}, {"question": "מהי מערכת הפעלה?", "answers": ["תוכנה לניהול קבצים", "תוכנה שמפעילה את המחשב", "אנטי וירוס", "כלי עיצוב"], "correct": 1}, {"question": "מהו HTML?", "answers": ["שפת תכנות", "שפת סימון לבניית אתרים", "אפליקציית עיצוב", "מנוע חיפוש"], "correct": 1}, {"question": "מהי סיומת .gov?", "answers": ["אתר חינוכי", "אתר חברתי", "אתר ממשלתי", "אתר פרטי"], "correct": 2}, {"question": "מה זה Cookie?", "answers": ["תוסף לדפדפן", "שפת תכנות", "מידע שנשמר בדפדפן", "כתובת IP"], "correct": 2}, {"question": "מהו פורום?", "answers": ["תוכנה לעריכת טקסט", "אתר בו ניתן לשאול ולענות", "מערכת לניהול עובדים", "כתובת IP"], "correct": 1}, {"question": "מהו דוא\"ל?", "answers": ["כתובת אתר", "דואר אלקטרוני", "כלי ניווט", "פורום אינטרנטי"], "correct": 1}, {"question": "מהי כתובת IP?", "answers": ["כתובת מייל", "כתובת מחשב ברשת", "כתובת דואר", "כתובת אתר"], "correct": 1}, {"question": "מהו דפדפן אינטרנט?", "answers": ["תוכנה לגלישה באתרים", "אתר אינטרנט", "תוכנה לעריכת וידאו", "שירות אחסון"], "correct": 0}, {"question": "מה המשמעות של HTTPS?", "answers": ["פרוטוקול מאובטח להעברת מידע", "מערכת הפעלה", "שפת תכנות", "אתר פרטי"], "correct": 0}, {"question": "מהו אתר מסחרי?", "answers": ["אתר של ממשלה", "אתר של עמותה", "אתר שמטרתו להרוויח כסף", "אתר פרטי בלבד"], "correct": 2}, {"question": "מהו קוד מקור (Source Code)?", "answers": ["גרסה מוגנת של אתר", "הקוד שכותבים כדי לבנות אתר", "שם תחום", "מערכת ניהול"], "correct": 1}, {"question": "מה זה פישינג (Phishing)?", "answers": ["תוכנה חוקית", "ניסיון לגניבת מידע אישי", "תוסף דפדפן", "מערכת ניהול"], "correct": 1}, {"question": "מהו בלוג?", "answers": ["פורום שאלות", "אתר חדשות", "יומן מקוון", "דף בית"], "correct": 2}, {"question": "מהי כתובת דואר אלקטרוני?", "answers": ["כתובת אתר", "משתמש@ספק.סיומת", "כתובת IP", "כתובת ביתית"], "correct": 1}, {"question": "מהי אפליקציית ענן?", "answers": ["תוכנה מותקנת מקומית", "אפליקציה שפועלת דרך הדפדפן", "משחק מחשב", "שירות גיבוי לבית"], "correct": 1}, {"question": "מה ההבדל בין אתר דינמי לסטטי?", "answers": ["אין הבדל", "סטטי מתעדכן אוטומטית", "דינמי משתנה לפי המשתמש", "סטטי הוא אתר מכירות"], "correct": 2}, {"question": "מה עושה קישור היפרטקסט?", "answers": ["מקשר לעמוד אחר או תוכן אחר", "מוסיף תמונה", "מוריד קובץ", "פותח מצלמה"], "correct": 0}, {"question": "מהי מערכת CMS?", "answers": ["מערכת לניהול תכנים", "מערכת הפעלה", "כלי חיפוש", "מערכת עיצוב"], "correct": 0}, {"question": "מה תפקיד שרת DNS?", "answers": ["להציג תמונות", "להעביר מידע", "לתרגם שמות מתחם לכתובת IP", "להגן מפני וירוסים"], "correct": 2}];
+        let currentQuestion = 0;
+        let attempt = 0;
 
-function showQuestion(index) {
-    document.querySelectorAll('.question-container').forEach(q => q.style.display = 'none');
-    document.querySelectorAll('.question-container')[index].style.display = 'block';
-}
-function checkAnswer(qIdx, correct) {
-    const radios = document.getElementsByName('q' + qIdx);
-    let selected = -1;
-    for (let i = 0; i < radios.length; i++) {
-        if (radios[i].checked) selected = parseInt(radios[i].value);
-    }
-    const feedback = document.getElementById('feedback' + qIdx);
-    const explanation = document.getElementById('explanation' + qIdx);
-    const nextBtn = document.getElementById('next' + qIdx);
-    if (selected === -1) {
-        feedback.textContent = "אנא בחר תשובה";
-        return;
-    }
-    if (selected === correct) {
-        feedback.textContent = "נכון!";
-        feedback.style.color = "green";
-        explanation.style.display = "block";
-        nextBtn.style.display = "inline-block";
-    } else {
-        attempts++;
-        if (attempts >= 2) {
-            feedback.textContent = "שגוי. התשובה הנכונה היא:";
-            feedback.style.color = "red";
-            explanation.style.display = "block";
-            nextBtn.style.display = "inline-block";
-        } else {
-            feedback.textContent = "לא נכון, נסה שוב.";
-            feedback.style.color = "orange";
-        }
-    }
-}
-function nextQuestion(qIdx) {
-    attempts = 0;
-    if (qIdx + 1 < totalQuestions) {
-        showQuestion(qIdx + 1);
-    } else {
-        alert("סיימת את השאלון! כל הכבוד!");
-    }
-}
-window.onload = () => showQuestion(0);
-</script><div id="quiz-area"></div><div id="quiz-container"><div class="question-container" style="display:block;"><p>שאלה 1: מה תפקידו של ISP?</p><label><input name="q0" type="radio" value="0"/> לספק שירותי טלוויזיה בלבד</label><br/><label><input name="q0" type="radio" value="1"/> לספק חיבור לרשת האינטרנט העולמית</label><br/><label><input name="q0" type="radio" value="2"/> להתקין כבלים בבית הלקוח</label><br/><label><input name="q0" type="radio" value="3"/> לפרוס סיבים אופטיים מתחת לים</label><br/><button class="submit-btn" onclick="checkAnswer(0, 1, `ISP הוא ספק שירותי אינטרנט – מחבר את המשתמש לרשת האינטרנט העולמית.`)">שלח</button><div id="feedback0"></div><button id="next0" onclick="nextQuestion(1)" style="display:none;">המשך</button></div><div class="question-container" style="display:none;"><p>שאלה 2: מהי רשת האינטרנט?</p><label><input name="q1" type="radio" value="0"/> חיבור בין שני מחשבים בלבד להעברת קבצים</label><br/><label><input name="q1" type="radio" value="1"/> רשת תקשורת נתונים עולמית שמחברת מחשבים רבים</label><br/><label><input name="q1" type="radio" value="2"/> שירות טלוויזיה אינטרנטי מבוסס IP</label><br/><label><input name="q1" type="radio" value="3"/> מערכת הפעלה לרשתות תקשורת</label><br/><button class="submit-btn" onclick="checkAnswer(1, 1, `האינטרנט היא רשת תקשורת נתונים עולמית שמחברת בין מיליוני מחשבים להעברת מידע.`)">שלח</button><div id="feedback1"></div><button id="next1" onclick="nextQuestion(2)" style="display:none;">המשך</button></div><div class="question-container" style="display:none;"><p>שאלה 3: מי מהבאים נחשב לספק תשתית אינטרנט בישראל?</p><label><input name="q2" type="radio" value="0"/> נטוויז'ן</label><br/><label><input name="q2" type="radio" value="1"/> בזק</label><br/><label><input name="q2" type="radio" value="2"/> סלקום TV</label><br/><label><input name="q2" type="radio" value="3"/> ויקיפדיה</label><br/><button class="submit-btn" onclick="checkAnswer(2, 1, `בזק מספקת את תשתית התקשורת הפיזית – קווי טלפון או סיבים – ולכן נחשבת לספק תשתית.`)">שלח</button><div id="feedback2"></div><button id="next2" onclick="nextQuestion(3)" style="display:none;">המשך</button></div><div class="question-container" style="display:none;"><p>שאלה 4: מהו סיב אופטי?</p><label><input name="q3" type="radio" value="0"/> כבל חשמלי להעברת מתח גבוה</label><br/><label><input name="q3" type="radio" value="1"/> חומר שקוף שמעביר נתונים באמצעות אור</label><br/><label><input name="q3" type="radio" value="2"/> מתאם לחיבור רשת אלחוטית</label><br/><label><input name="q3" type="radio" value="3"/> פרוטוקול להעברת קבצים</label><br/><button class="submit-btn" onclick="checkAnswer(3, 1, `סיב אופטי הוא חומר שקוף שמעביר נתונים במהירות גבוהה באמצעות אור.`)">שלח</button><div id="feedback3"></div><button id="next3" onclick="nextQuestion(4)" style="display:none;">המשך</button></div><div class="question-container" style="display:none;"><p>שאלה 5: איזו טכנולוגיה משתמשת בזק לחיבור אינטרנט?</p><label><input name="q4" type="radio" value="0"/> Ethernet Only</label><br/><label><input name="q4" type="radio" value="1"/> HDMI</label><br/><label><input name="q4" type="radio" value="2"/> Coaxial</label><br/><label><input name="q4" type="radio" value="3"/> DSL</label><br/><button class="submit-btn" onclick="checkAnswer(4, 3, `בזק משתמשת בטכנולוגיית DSL שמעבירה אינטרנט דרך קווי טלפון.`)">שלח</button><div id="feedback4"></div><button id="next4" onclick="nextQuestion(5)" style="display:none;">המשך</button></div></div></body></html>
+        function showQuestion() {{
+            const q = questions[currentQuestion];
+            document.getElementById("question-number").innerText = "שאלה " + (currentQuestion + 1) + " מתוך " + questions.length;
+            document.getElementById("question-text").innerText = q.question;
+            document.getElementById("options").innerHTML = "";
+            document.getElementById("explanation").innerText = "";
+            document.getElementById("next-btn").style.display = "none";
+
+            q.answers.forEach((opt, i) => {{
+                const btn = document.createElement("button");
+                btn.innerText = opt;
+                btn.className = "option";
+                btn.onclick = () => checkAnswer(i);
+                document.getElementById("options").appendChild(btn);
+            }});
+        }}
+
+        function checkAnswer(selected) {{
+            const q = questions[currentQuestion];
+            if (selected === q.correct) {{
+                document.getElementById("explanation").innerText = "✔ תשובה נכונה!";
+                document.getElementById("next-btn").style.display = "inline-block";
+            }} else {{
+                attempt++;
+                if (attempt === 1) {{
+                    document.getElementById("explanation").innerText = "❌ נסה שוב...";
+                }} else {{
+                    document.getElementById("explanation").innerText = "✖ התשובה הנכונה היא: " + q.answers[q.correct];
+                    document.getElementById("next-btn").style.display = "inline-block";
+                }}
+            }}
+        }}
+
+        function nextQuestion() {{
+            currentQuestion++;
+            attempt = 0;
+            if (currentQuestion < questions.length) {{
+                showQuestion();
+            }} else {{
+                document.querySelector(".quiz-container").innerHTML = "<h2>🎉 סיימת את השאלון!</h2>";
+            }}
+        }}
+
+        showQuestion();
+    </script>
+</body>
+</html>
