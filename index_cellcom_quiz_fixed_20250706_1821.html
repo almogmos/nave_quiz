@@ -1,0 +1,115 @@
+
+<!DOCTYPE html>
+<html lang="he">
+<head>
+    <meta charset="UTF-8">
+    <title>שאלון אינטראקטיבי | סלקום</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f3e5f5;
+            color: #4a148c;
+            text-align: center;
+            direction: rtl;
+        }
+        .quiz-container {
+            max-width: 600px;
+            margin: 50px auto;
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 0 10px #ccc;
+        }
+        .question-title {
+            font-size: 1.2em;
+            margin-bottom: 20px;
+        }
+        .option {
+            display: block;
+            margin: 10px;
+            padding: 10px;
+            background-color: #e1bee7;
+            border-radius: 10px;
+            cursor: pointer;
+        }
+        .option:hover {
+            background-color: #ce93d8;
+        }
+        #explanation {
+            margin-top: 20px;
+            font-size: 1em;
+            color: #00695c;
+        }
+        #next-btn {
+            margin-top: 30px;
+            padding: 10px 20px;
+            background-color: #6a1b9a;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="quiz-container">
+        <div id="question-number"></div>
+        <div class="question-title" id="question-text"></div>
+        <div id="options"></div>
+        <div id="explanation"></div>
+        <button id="next-btn" onclick="nextQuestion()">המשך</button>
+    </div>
+
+    <script>
+        const questions = [{"question": "מהו דפדפן אינטרנט?", "options": ["תוכנה לגלישה באתרים", "אתר אינטרנט פופולרי", "אנטי וירוס", "שירות ענן לאחסון"], "answer": 0, "explanation": "דפדפן הוא תוכנה שמאפשרת למשתמשים לגלוש באינטרנט ולצפות בדפי רשת."}, {"question": "מהו URL?", "options": ["כתובת של דף אינטרנט", "סוג של סיסמה", "תוסף לדפדפן", "שם משתמש באינטרנט"], "answer": 0, "explanation": "URL הוא כתובת אינטרנט ייחודית שמובילה לדף מסוים."}, {"question": "מה משמעות הסיומת .com?", "options": ["אוניברסיטה", "מסחרי", "ממשלתי", "ארגון ללא כוונת רווח"], "answer": 1, "explanation": "סיומת .com מייצגת את המילה commercial – כלומר אתר מסחרי."}];
+        let currentQuestion = 0;
+        let attempt = 0;
+
+        function showQuestion() {
+            const q = questions[currentQuestion];
+            document.getElementById("question-number").innerText = "שאלה " + (currentQuestion + 1) + " מתוך " + questions.length;
+            document.getElementById("question-text").innerText = q.question;
+            document.getElementById("options").innerHTML = "";
+            document.getElementById("explanation").innerText = "";
+            document.getElementById("next-btn").style.display = "none";
+
+            q.options.forEach((opt, i) => {
+                const btn = document.createElement("button");
+                btn.innerText = opt;
+                btn.className = "option";
+                btn.onclick = () => checkAnswer(i);
+                document.getElementById("options").appendChild(btn);
+            });
+        }
+
+        function checkAnswer(selected) {
+            const q = questions[currentQuestion];
+            if (selected === q.answer) {
+                document.getElementById("explanation").innerText = "✔ תשובה נכונה! " + q.explanation;
+                document.getElementById("next-btn").style.display = "inline-block";
+            } else {
+                attempt++;
+                if (attempt === 1) {
+                    document.getElementById("explanation").innerText = "❌ נסה שוב...";
+                } else {
+                    document.getElementById("explanation").innerText = "✖ התשובה הנכונה היא: " + q.options[q.answer] + ". " + q.explanation;
+                    document.getElementById("next-btn").style.display = "inline-block";
+                }
+            }
+        }
+
+        function nextQuestion() {
+            currentQuestion++;
+            attempt = 0;
+            if (currentQuestion < questions.length) {
+                showQuestion();
+            } else {
+                document.querySelector(".quiz-container").innerHTML = "<h2>🎉 סיימת את השאלון!</h2>";
+            }
+        }
+
+        showQuestion();
+    </script>
+</body>
+</html>
